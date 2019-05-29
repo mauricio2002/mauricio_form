@@ -5,18 +5,19 @@
     $content = $_POST['content'];
     // echo $nickname;
 
+// ニックネーム：値の有無で処理を分岐
     if ($nickname == '') {
         $nickname_result = 'ニックネームが入力されていません。';
     } else {
         $nickname_result = 'ようこそ、' . $nickname . '様';
     }
-
+// メールアドレス：値の有無で処理を分岐
     if ($email == '') {
         $email_result = 'メールアドレスが入力されていません。';
     } else {
         $email_result = 'メールアドレス' . $email;
     }
-
+// お問い合わせ内容：値の有無で処理を分岐
     if ($content == '') {
         $content_result = 'お問い合わせ内容が入力されていません。';
     } else {
@@ -35,5 +36,16 @@
     <p><?php echo $nickname_result ?></p>
     <p><?php echo $email_result ?></p>
     <p><?php echo $content_result ?></p>
+    <form method="POST" action="thanks.php">
+
+        <input type="hidden" name="nickname" value="<?php echo $nickname?>">
+        <input type="hidden" name="email" value="<?php echo $email?>">
+        <input type="hidden" name="content" value="<?php echo $content?>">
+
+        <input type="button" value="戻る" onclick="history.back()">
+        <?php if ($email !== '' && $nickname !== '' && $content != ''): //コロン構文?>
+            <input type="submit" value="OK">
+        <?php endif;?>
+    </form>
 </body>
 </html>
